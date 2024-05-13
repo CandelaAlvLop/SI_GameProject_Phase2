@@ -12,7 +12,8 @@ public class PickingObject : MonoBehaviour
     void Update()
     {
         // Check if the ingredient instance exists and if the space key is pressed
-        if (ingredientInstance != null && Input.GetKeyDown(KeyCode.Space))  //&& transform.position.y > 10 mueve hacia arriba (para el caso del tracker en el lab)
+        //if (ingredientInstance != null && Input.GetKeyDown(KeyCode.Space))  //&& transform.position.y > 10 mueve hacia arriba (para el caso del tracker en el lab)
+        if (ingredientInstance != null && transform.position.y > 10)
         {
             // Remove the ingredient from the player
             ingredientInstance.transform.parent = null;
@@ -75,8 +76,6 @@ public class PickingObject : MonoBehaviour
             ingredientInstance.transform.localPosition = new Vector3(0, y, 0); 
 
         }
-
-        /*
         else if (ingredientInstance == null && collision.gameObject.CompareTag("Ingredient")) //POSIBLE IDEA NS
         {
             // Si no tiene ninguna instancia de ingredient puede volver a cogerlo (vuelve a ser hijo del player)
@@ -89,7 +88,5 @@ public class PickingObject : MonoBehaviour
                 rb.isKinematic = true;
             }
         }
-
-        */
     }
 }
