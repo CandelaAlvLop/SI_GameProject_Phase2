@@ -1,0 +1,122 @@
+# Blender 4.1.1 MTL File: 'None'
+# www.blender.org
+
+newmtl Mat.002
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd C:/Users/nerea/OneDrive/Documentos/GitHub/SI_GameProject/Assets/Objects/Ingredients/285_Olive.png
+
+newmtl Mat.003
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd C:/Users/nerea/OneDrive/Documentos/GitHub/SI_GameProject/Assets/Objects/Ingredients/285_Olive.png
+
+newmtl Mat.004
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd C:/Users/nerea/OneDrive/Documentos/GitHub/SI_GameProject/Assets/Objects/Ingredients/285_Olive.png
+
+newmtl Mat.005
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd C:/Users/nerea/OneDrive/Documentos/GitHub/SI_GameProject/Assets/Objects/Ingredients/285_Olive.png
+
+newmtl Mat.006
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd C:/Users/nerea/OneDrive/Documentos/GitHub/SI_GameProject/Assets/Objects/Ingredients/285_Olive.png
+
+newmtl Mat.007
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd C:/Users/nerea/OneDrive/Documentos/GitHub/SI_GameProject/Assets/Objects/Ingredients/285_Olive.png
+
+newmtl Mat.008
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd C:/Users/nerea/OneDrive/Documentos/GitHub/SI_GameProject/Assets/Objects/Ingredients/285_Olive.png
+
+newmtl Mat.009
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd C:/Users/nerea/OneDrive/Documentos/GitHub/SI_GameProject/Assets/Objects/Ingredients/285_Olive.png
+
+newmtl Mat.010
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd C:/Users/nerea/OneDrive/Documentos/GitHub/SI_GameProject/Assets/Objects/Ingredients/285_Olive.png
+
+newmtl Mat.011
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd C:/Users/nerea/OneDrive/Documentos/GitHub/SI_GameProject/Assets/Objects/Ingredients/285_Olive.png
+
+newmtl Mat.012
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd C:/Users/nerea/OneDrive/Documentos/GitHub/SI_GameProject/Assets/Objects/Ingredients/285_Olive.png
+
+newmtl restaurant.003
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 1
+map_Kd C:/restaurantbits_texture.png
+map_d C:/restaurantbits_texture.png
