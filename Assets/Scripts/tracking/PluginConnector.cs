@@ -24,7 +24,7 @@ public class PluginConnector : MonoBehaviour
     [SerializeField] private int numberOfPlayers;
     [SerializeField] private int numberOfBaseStations;
     [SerializeField] private bool screenToWorldPosTracking;
-    [SerializeField] private bool enableRotation;
+    [SerializeField] public bool enableRotation;
     [SerializeField] private bool enableYAxis;
     [SerializeField] private bool swapXZ;
     [SerializeField] private bool invertX;

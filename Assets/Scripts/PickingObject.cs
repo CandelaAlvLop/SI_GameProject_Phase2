@@ -5,20 +5,42 @@ using UnityEngine;
 public class PickingObject : MonoBehaviour
 {
     public List<GameObject> ingredientPrefabs;  //List of possible ingredients
-    public float y; 
+    public float y;
+    private float z = 0f;
     private GameObject ingredientInstance;
+
+    private PluginConnector connector;
+
+
+    public bool player1;
+    void Start()
+    { 
+        connector = GetComponent<PluginConnector>();
+    }
 
 
     void Update()
     {
-        // Check if the ingredient instance exists and if the space key is pressed
-        //if (ingredientInstance != null && Input.GetKeyDown(KeyCode.Space))  //&& transform.position.y > 10 mueve hacia arriba (para el caso del tracker en el lab)
-        if (ingredientInstance != null && transform.position.y > 10)
+
+
+        //if (player1 && Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    transform.rotation = Quaternion.Euler(0f, 0f, 43f);
+        //}
+
+        if (ingredientInstance != null)
         {
-            // Remove the ingredient from the player
-            ingredientInstance.transform.parent = null;
-            StartCoroutine(DelayedFall(ingredientInstance));
-            ingredientInstance = null; // Set the ingredientInstance to null after dropping it in this way we can take another ingredient
+            connector.enableRotation = true;
+
+            if (player1 && connector.enableRotation && transform.rotation.z > 40) {
+                // Remove the ingredient from the player
+                ingredientInstance.transform.parent = null;
+                StartCoroutine(DelayedFall(ingredientInstance));
+                ingredientInstance = null; // Set the ingredientInstance to null after dropping it in this way we can take another ingredient
+                connector.enableRotation = false;
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+            
         }
     }
 
