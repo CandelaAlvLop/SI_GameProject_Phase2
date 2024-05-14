@@ -6,8 +6,7 @@ public class PickingObject : MonoBehaviour
 {
     public List<GameObject> ingredientPrefabs;  //List of possible ingredients
     public float y;
-    private float z = 0f;
-    private GameObject ingredientInstance;
+    public GameObject ingredientInstance;
 
     private PluginConnector connector;
 
@@ -15,24 +14,18 @@ public class PickingObject : MonoBehaviour
     public bool player1;
     void Start()
     { 
-        connector = GetComponent<PluginConnector>();
+        connector = FindObjectOfType<PluginConnector>();
     }
 
 
     void Update()
     {
 
-
-        //if (player1 && Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    transform.rotation = Quaternion.Euler(0f, 0f, 43f);
-        //}
-
         if (ingredientInstance != null)
         {
             connector.enableRotation = true;
 
-            if (player1 && connector.enableRotation && transform.rotation.z > 40) {
+            if (player1 && connector.enableRotation && transform.rotation.eulerAngles.z > 40) {
                 // Remove the ingredient from the player
                 ingredientInstance.transform.parent = null;
                 StartCoroutine(DelayedFall(ingredientInstance));
