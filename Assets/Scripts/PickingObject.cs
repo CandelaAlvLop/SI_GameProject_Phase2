@@ -8,32 +8,34 @@ public class PickingObject : MonoBehaviour
     public float y;
     public GameObject ingredientInstance;
 
-    private PluginConnector connector;
-
-
-    public bool player1;
-    void Start()
-    { 
-        connector = FindObjectOfType<PluginConnector>();
-    }
-
+    public RotationPlayer playerRotation; // Referencia al script de rotación del jugador
+    public float rotationSpeed = 30f;
 
     void Update()
     {
-
+       
         if (ingredientInstance != null)
         {
-            connector.enableRotation = true;
+            // Temporary key to increase player rotation on the X axis
+            if (Input.GetKey(KeyCode.R))
+            {
+                playerRotation.SetRotation(rotationSpeed * Time.deltaTime);
+            }
 
-            if (player1 && connector.enableRotation && transform.rotation.eulerAngles.z > 40) {
+
+
+            // Check if the player's rotation in the Z axis is greater than 45 degrees
+            if (transform.rotation.eulerAngles.z > 45f)
+            {
                 // Remove the ingredient from the player
                 ingredientInstance.transform.parent = null;
                 StartCoroutine(DelayedFall(ingredientInstance));
                 ingredientInstance = null; // Set the ingredientInstance to null after dropping it in this way we can take another ingredient
-                connector.enableRotation = false;
-                transform.rotation = Quaternion.Euler(0, 0, 0);
+
+                // Reset the player's rotation to the initial rotation
+                playerRotation.ResetRotation();
+
             }
-            
         }
     }
 
