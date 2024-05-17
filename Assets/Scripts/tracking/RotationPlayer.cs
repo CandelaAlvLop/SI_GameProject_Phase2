@@ -23,9 +23,7 @@ public class RotationPlayer : MonoBehaviour
 
         //Comentar cuando vamos a usar el tracker       
         transform.Rotate(Vector3.forward * rotationAmount);
-        
-
-
+       
     }
 
     public void ResetRotation()

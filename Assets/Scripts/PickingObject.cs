@@ -10,10 +10,14 @@ public class PickingObject : MonoBehaviour
 
     public RotationPlayer playerRotation; // Referencia al script de rotación del jugador
     public float rotationSpeed = 30f;
+    public float moveSpeed = 5f; // Speed at which the player moves down
+
 
     void Update()
     {
-       
+        if (Input.GetKey(KeyCode.DownArrow)) transform.Translate(Vector3.down * moveSpeed * Time.deltaTime);
+        if (Input.GetKey(KeyCode.UpArrow)) transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
+
         if (ingredientInstance != null)
         {
             // Temporary key to increase player rotation on the X axis
@@ -55,13 +59,13 @@ public class PickingObject : MonoBehaviour
 
     void OnTriggerEnter(Collider collision)
     {
-       
+
         string crateName = collision.gameObject.name;
         int crateIdx = -1;
 
-        switch(crateName)
+        switch (crateName)
         {
-           case "Crate Mushroom":
+            case "Crate Mushroom":
                 crateIdx = 0;
                 break;
             case "Crate Olives":
@@ -78,32 +82,34 @@ public class PickingObject : MonoBehaviour
                 break;
             case "Crate Tomatoes":
                 crateIdx = 5;
-                break; 
+                break;
         }
-       
+
         // Check if the player already has an ingredient
         if (ingredientInstance == null && crateIdx != -1)
         {
-            if(crateIdx == 0 || crateIdx == 2){
+            if (crateIdx == 0 || crateIdx == 2)
+            {
                 ingredientInstance = Instantiate(ingredientPrefabs[crateIdx], transform.position, Quaternion.Euler(90, 0, 0), transform);
-            }else{
+            }
+            else
+            {
                 ingredientInstance = Instantiate(ingredientPrefabs[crateIdx], transform.position, Quaternion.identity, transform);
             }
 
-            ingredientInstance.transform.localPosition = new Vector3(0, y, 0); 
+            ingredientInstance.transform.localPosition = new Vector3(0, y, 0);
 
         }
-        else if (ingredientInstance == null && collision.gameObject.CompareTag("Ingredient")) //POSIBLE IDEA NS
+
+        if (ingredientInstance == null)
         {
-            // Si no tiene ninguna instancia de ingredient puede volver a cogerlo (vuelve a ser hijo del player)
-            ingredientInstance = collision.gameObject;
-            ingredientInstance.transform.parent = transform;
-            ingredientInstance.transform.localPosition = new Vector3(0, y, 0);
-            Rigidbody rb = ingredientInstance.GetComponent<Rigidbody>();
-            if (rb != null)
+            if (collision.gameObject.tag == "Ingredient")
             {
-                rb.isKinematic = true;
+                ingredientInstance = collision.gameObject;
+                ingredientInstance = Instantiate(ingredientPrefabs[crateIdx], transform.position, Quaternion.identity, transform);
+                ingredientInstance.transform.localPosition = new Vector3(0, y, 0);
             }
+
         }
     }
 }
