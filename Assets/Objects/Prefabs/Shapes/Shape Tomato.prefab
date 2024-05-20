@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 9185737683893222716, guid: df7c373b81a1d5a478d0517af07dcf48, type: 3}
+  - {fileID: 2100000, guid: 92c0d210509402745ba71d925d00c03b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 5680086166634151096}
   - component: {fileID: 3301223627296840658}
   m_Layer: 0
-  m_Name: Tomato
+  m_Name: Shape Tomato
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
