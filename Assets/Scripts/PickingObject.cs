@@ -36,18 +36,23 @@ public class PickingObject : MonoBehaviour
             // Check if the player's rotation in the Z axis is greater than 45 degrees
             if (transform.rotation.eulerAngles.z > 45f)
             {
-                // Remove the ingredient from the player
-                ingredientInstance.transform.parent = null;
-                StartCoroutine(DelayedFall(ingredientInstance));
-                ingredientInstance = null; // Set the ingredientInstance to null after dropping it in this way we can take another ingredient
-
-                // Reset the player's rotation to the initial rotation
-                playerRotation.ResetRotation();
-
+                DropIngredient();
             }
         }
     }
 
+
+    //------- Drop Ingredient ----------
+    private void DropIngredient()
+    {
+        // Remove the ingredient from the player
+        ingredientInstance.transform.parent = null;
+        StartCoroutine(DelayedFall(ingredientInstance));
+        ingredientInstance = null; // Set the ingredientInstance to null after dropping it in this way we can take another ingredient
+
+        // Reset the player's rotation to the initial rotation
+        playerRotation.ResetRotation();
+    }
 
 
     //------- Corutine to make the ingredient fall ------------
@@ -155,7 +160,6 @@ public class PickingObject : MonoBehaviour
     {
         for (int i = 0; i < ingredientPrefabs.Count; i++)
         {
-            // Utilizza Contains per verificare se il nome del prefab contiene la stringa desiderata
             if (name.Contains(ingredientPrefabs[i].name))
             {
                 return i;
