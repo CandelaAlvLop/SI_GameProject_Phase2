@@ -807,7 +807,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2562061944023969290, guid: 48f11caa6fcc8804db465abcf12dfa4a, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 2562061944023969290, guid: 48f11caa6fcc8804db465abcf12dfa4a, type: 3}
       propertyPath: m_LocalScale.x
@@ -863,7 +863,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2937918636316701872, guid: 48f11caa6fcc8804db465abcf12dfa4a, type: 3}
       propertyPath: m_Name
-      value: Shape Mushroom (3)
+      value: Shape Mushroom (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48f11caa6fcc8804db465abcf12dfa4a, type: 3}
@@ -2599,7 +2599,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1312426705416927996, guid: 28360bfc3dd497e46b895d4189aa1852, type: 3}
       propertyPath: m_Name
-      value: Shape Cheese (5)
+      value: Shape Cheese (2)
       objectReference: {fileID: 0}
     - target: {fileID: 1836762272021405766, guid: 28360bfc3dd497e46b895d4189aa1852, type: 3}
       propertyPath: m_RootOrder
@@ -4425,7 +4425,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2562061944023969290, guid: 48f11caa6fcc8804db465abcf12dfa4a, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 2562061944023969290, guid: 48f11caa6fcc8804db465abcf12dfa4a, type: 3}
       propertyPath: m_LocalScale.x
@@ -5355,7 +5355,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1312426705416927996, guid: 28360bfc3dd497e46b895d4189aa1852, type: 3}
       propertyPath: m_Name
-      value: Shape Cheese (4)
+      value: Shape Cheese (1)
       objectReference: {fileID: 0}
     - target: {fileID: 1836762272021405766, guid: 28360bfc3dd497e46b895d4189aa1852, type: 3}
       propertyPath: m_RootOrder
@@ -7643,7 +7643,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4582309067061792015, guid: cfac7eba4028a9a4ab672a17b2ffbf6c, type: 3}
       propertyPath: m_Name
-      value: Shape Onion Rings (4)
+      value: Shape Onion Rings (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfac7eba4028a9a4ab672a17b2ffbf6c, type: 3}
@@ -9934,7 +9934,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1312426705416927996, guid: 28360bfc3dd497e46b895d4189aa1852, type: 3}
       propertyPath: m_Name
-      value: Shape Cheese (1)
+      value: Shape Cheese
       objectReference: {fileID: 0}
     - target: {fileID: 1836762272021405766, guid: 28360bfc3dd497e46b895d4189aa1852, type: 3}
       propertyPath: m_RootOrder
@@ -10092,7 +10092,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4582309067061792015, guid: cfac7eba4028a9a4ab672a17b2ffbf6c, type: 3}
       propertyPath: m_Name
-      value: Shape Onion Rings (1)
+      value: Shape Onion Rings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfac7eba4028a9a4ab672a17b2ffbf6c, type: 3}
