@@ -102,6 +102,14 @@ public class PickingObject : MonoBehaviour
                     DropIngredientAtPattern(pattern.transform); // Drop ingredient if it matches position x, z, and rotation
                     pattern.SetActive(false);
                     return; // Exit the method once the ingredient is dropped
+                }else if(PositionMatch(pattern.transform.position)&& !RotationMatch(pattern.transform.rotation))
+                {
+
+                    Collider collider = ingredientInstance.GetComponent<Collider>();
+                    if (collider != null) collider.isTrigger = true;
+
+                    DropIngredienAtPatternPosition(pattern.transform);
+
                 }
             }
         }
@@ -160,6 +168,74 @@ public class PickingObject : MonoBehaviour
         if (Input.GetKey(KeyCode.UpArrow)) transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
     }
 
+
+    //------- Drop Ingredient ----------
+    private void DropIngredient()
+    {
+        // Remove the ingredient from the player
+        ingredientInstance.transform.parent = null;
+        StartCoroutine(DelayedFall(ingredientInstance));
+        ingredientInstance = null; // Set the ingredientInstance to null after dropping it in this way we can take another ingredient
+        // Reset the player's rotation to the initial rotation
+        playerRotation.ResetRotation();
+    }
+
+
+    //------- Corutine to make the ingredient fall ------------
+    IEnumerator DelayedFall(GameObject ingredient) 
+    {   
+        // Wait for 1 seconds
+        yield return new WaitForSeconds(1);
+
+        // Adding force to make the ingrendient fall
+        Rigidbody rb = ingredient.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.isKinematic = false;
+            rb.AddForce(Vector3.down * 10, ForceMode.Impulse);
+        }
+
+        // Disable the isTrigger temporarily to allow for physics interaction
+        Collider collider = ingredient.GetComponent<Collider>();
+
+        if(collider != null) collider.isTrigger = false;
+
+        // Wait for 1 second before enabling trigger again
+        yield return new WaitForSeconds(1);
+
+        // Re-enable the Collider to allow picking it up again and isKinematic in this way the ingredient doesn't fall
+        if (collider != null) collider.isTrigger = true;
+     
+        if (rb != null) rb.isKinematic = true;
+        
+    }
+
+
+    //----- Function to pick up an object again -----
+    private void PickingAgainObject(Collider collision)
+    {
+        if (ingredientInstance == null)
+        {
+
+            if (collision.gameObject.CompareTag("Ingredient"))
+            {
+                int index = GetIngredientIndexByName(collision.gameObject.name);
+
+                print(index);
+
+                // Make the colliding object a child of the player
+                ingredientInstance = collision.gameObject;
+                ingredientInstance.transform.SetParent(transform);
+
+                // Reset position and rotation of the ingredient to match the player
+                Quaternion spawnRotation = (index == 0 || index == 2) ? Quaternion.Euler(90, 0, 0) : Quaternion.identity;
+                ingredientInstance.transform.localRotation = spawnRotation;
+                ingredientInstance.transform.localPosition = new Vector3(0, hand.transform.position.y - y, 0);
+
+
+            }
+        }
+    }
 
     //---- Searches for an ingredient in a list based on its name and returns its index ---
     public int GetIngredientIndexByName(string name)
