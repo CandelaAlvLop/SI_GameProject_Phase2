@@ -7,6 +7,10 @@ TagManager:
   - BlendPlane0
   - BlendPlane1
   - Crate
+  - Ingredient
+  - Player1
+  - Player2
+  - Pattern
   layers:
   - Default
   - TransparentFX

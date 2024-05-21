@@ -134,7 +134,7 @@ public class PickingObject : MonoBehaviour
             ingredientInstance.transform.localPosition = spawnPosition;
         }
 
-        PickingAgainObject(collision);
+       PickingAgainObject(collision);
 
     }
 

@@ -4802,6 +4802,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: hand
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9fba3e7f8e61da749ace5677ab456713, type: 3}
+      propertyPath: m_TagString
+      value: Player2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9fba3e7f8e61da749ace5677ab456713, type: 3}
 --- !u!4 &1201344088 stripped
@@ -5570,7 +5574,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1440896347}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -5790,6 +5794,8 @@ MonoBehaviour:
   playerRotation: {fileID: 1440896356}
   rotationSpeed: 30
   moveSpeed: 5
+  posMargin: 4
+  rotMargin: 30
   hand: {fileID: 1132076196}
 --- !u!114 &1440896356
 MonoBehaviour:
@@ -6241,7 +6247,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1471923275}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -6461,6 +6467,8 @@ MonoBehaviour:
   playerRotation: {fileID: 1471923284}
   rotationSpeed: 30
   moveSpeed: 5
+  posMargin: 4
+  rotMargin: 30
   hand: {fileID: 342180447}
 --- !u!114 &1471923284
 MonoBehaviour:
@@ -6474,7 +6482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e64488c5cd3a32a4d9430d3985921069, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player2: 1
+  player2: 0
 --- !u!1 &1483708435
 GameObject:
   m_ObjectHideFlags: 0
@@ -9373,6 +9381,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 9fba3e7f8e61da749ace5677ab456713, type: 3}
       propertyPath: m_Name
       value: hand
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9fba3e7f8e61da749ace5677ab456713, type: 3}
+      propertyPath: m_TagString
+      value: Player1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9fba3e7f8e61da749ace5677ab456713, type: 3}

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2370098175230955110}
   - component: {fileID: 1016523697122187819}
   - component: {fileID: -1083064002484216958}
+  - component: {fileID: -5143592317651847751}
   m_Layer: 0
   m_Name: Onion Rings
   m_TagString: Ingredient
@@ -113,3 +114,16 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -3992234213484251479, guid: c31798790579949468b9d7b91d3e753e, type: 3}
+--- !u!114 &-5143592317651847751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4315780826162720691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cd987b3aec178a4a844d1bc0e289867, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 30

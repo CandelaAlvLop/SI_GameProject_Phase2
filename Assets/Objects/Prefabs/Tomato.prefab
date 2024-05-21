@@ -106,6 +106,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5680086166634151096}
   - component: {fileID: 3301223627296840658}
+  - component: {fileID: 4034248988553343020}
   m_Layer: 0
   m_Name: Tomato
   m_TagString: Ingredient
@@ -144,3 +145,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4034248988553343020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5014873542352102914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e64488c5cd3a32a4d9430d3985921069, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player2: 0
