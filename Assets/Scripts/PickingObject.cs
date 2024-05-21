@@ -35,10 +35,11 @@ public class PickingObject : MonoBehaviour
         if (ingredientInstance != null)
         {
             // Temporary key to increase player rotation on the X axis
-            if (Input.GetKey(KeyCode.R))
-            {
-                playerRotation.SetRotation(rotationSpeed * Time.deltaTime);
-            }
+            //if (Input.GetKey(KeyCode.R))
+            //{
+            //}
+
+            playerRotation.SetRotation(rotationSpeed * Time.deltaTime);
 
             // Check if the player's rotation in the Z axis is greater than 45 degrees
             if (transform.rotation.eulerAngles.z > 45f)

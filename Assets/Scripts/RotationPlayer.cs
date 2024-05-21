@@ -23,7 +23,7 @@ public class RotationPlayer : MonoBehaviour
         connector.enableRotation = true;
 
         //Comentar cuando vamos a usar el tracker       
-        transform.Rotate(Vector3.forward * rotationAmount);
+        //transform.Rotate(Vector3.forward * rotationAmount);
        
     }
 
