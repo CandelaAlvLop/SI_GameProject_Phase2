@@ -91,12 +91,14 @@ public class PickingObject : MonoBehaviour
         
     }
 
+    //------ Instantiate an ingredient when triggered by a crate ------
     void OnTriggerEnter(Collider collision)
     {
 
         string crateName = collision.gameObject.name;
         int crateIdx = -1;
 
+        // Determine the index of the crate based on its name
         switch (crateName)
         {
             case "Crate Mushroom":
@@ -120,16 +122,16 @@ public class PickingObject : MonoBehaviour
 
         }
 
-        //--------- Check if the player already has an ingredient --------
+        //Check if the player already has an ingredient and a valid crate index was found
         if (ingredientInstance == null && crateIdx != -1)
         {
             GameObject prefab = ingredientPrefabs[crateIdx];
             Vector3 spawnPosition = new Vector3(0, hand.transform.position.y - y, 0);
             Quaternion spawnRotation = (crateIdx == 0 || crateIdx == 2) ? Quaternion.Euler(90, 0, 0) : Quaternion.identity;
+
+            //Instantiate the ingredient prefab at the calculated position and rotation
             ingredientInstance = Instantiate(prefab, transform.position, spawnRotation, transform);
             ingredientInstance.transform.localPosition = spawnPosition;
-
-
         }
 
         PickingAgainObject(collision);
@@ -163,6 +165,7 @@ public class PickingObject : MonoBehaviour
         }
     }
 
+    //---- Searches for an ingredient in a list based on its name and returns its index ---
     public int GetIngredientIndexByName(string name)
     {
         for (int i = 0; i < ingredientPrefabs.Count; i++)

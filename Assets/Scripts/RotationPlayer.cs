@@ -16,6 +16,7 @@ public class RotationPlayer : MonoBehaviour
         initialRotation = transform.rotation;
     }
 
+    //---- Methods to control and reset rotation ----
     public void SetRotation(float rotationAmount)
     {
         //Descomentar cuando vamos a usarlo en tracker
