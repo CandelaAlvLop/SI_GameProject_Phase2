@@ -8,9 +8,16 @@ public class PickingObject : MonoBehaviour
     public float y;
     public GameObject ingredientInstance;
 
-    public RotationPlayer playerRotation; // Referencia al script de rotación del jugador
+    public RotationPlayer playerRotation; // Reference to script de RotationPlayer
+    
+    //Auxiliar Variables for the movement of the player
     public float rotationSpeed = 30f;
     public float moveSpeed = 5f; // Speed at which the player moves down
+
+    //Variables for pattern Matching
+    public float posMargin = 4f;
+    public float rotMargin = 30f;
+
 
     public GameObject hand;
 
@@ -168,5 +175,53 @@ public class PickingObject : MonoBehaviour
         return -1;
     }
 
+
+    //------- Functions to drop automatically when matching pattern -------
+    void FixedUpdate()
+    {
+        if (ingredientInstance != null) //Check player has an ingredient
+        {
+            GetPatternPositions();
+        }
+    }
+
+    private void GetPatternPositions()
+    {
+        GameObject[] patternPositions = GameObject.FindGameObjectsWithTag("Pattern");
+
+        foreach (GameObject pattern in patternPositions)
+        {
+            if (PositionMatch(pattern.transform.position) && RotationMatch(pattern.transform.rotation))
+            {
+                DropIngredientAtPattern(pattern.transform); //Drop ingredient if it matches position x,z and rotation
+                break;
+            }
+        }
+    }
+
+    private bool PositionMatch(Vector3 patternPosition)
+    {
+        Vector2 ingredientPos = new Vector2(ingredientInstance.transform.position.x, ingredientInstance.transform.position.z);
+        Vector2 patternPos = new Vector2(patternPosition.x, patternPosition.z);
+        float distance = Vector2.Distance(ingredientPos, patternPos); //Compute the distance between the ingredient and the pattern
+        Debug.Log($"Position check: distance = {distance}, margin = {posMargin}");
+        return distance <= posMargin;
+    }
+
+    private bool RotationMatch(Quaternion patternRotation)
+    {
+        float angle = Quaternion.Angle(ingredientInstance.transform.rotation, patternRotation);
+        Debug.Log($"Rotation check: angle = {angle}, margin = {rotMargin}");
+        return angle <= rotMargin;
+    }
+
+    private void DropIngredientAtPattern(Transform patternTransform)
+    {
+        ingredientInstance.transform.SetParent(null); //Detach from Parent
+        ingredientInstance.transform.position = patternTransform.position;
+        ingredientInstance.transform.rotation = patternTransform.rotation;
+        ingredientInstance = null;
+        Debug.Log("Ingredient dropped at pattern position.");
+    }
 
 }
