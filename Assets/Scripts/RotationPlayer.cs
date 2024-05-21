@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RotationPlayer : MonoBehaviour
 {
-    private Quaternion initialRotation;
+    public Quaternion initialRotation;
 
     private PluginConnector connector;
 

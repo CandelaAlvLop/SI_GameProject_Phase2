@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1836762272021405766}
   m_Layer: 0
   m_Name: Shape Cheese
-  m_TagString: Pattern
+  m_TagString: CheesePattern
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 2473907730042370647}
   - component: {fileID: 714751036937764023}
   - component: {fileID: 2980493410448105869}
+  - component: {fileID: 7134956101447123342}
   m_Layer: 0
   m_Name: cheeseCut
   m_TagString: Untagged
@@ -114,3 +115,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7134956101447123342
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6657053566339468649}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.384, y: 0.02048, z: 0.264}
+  m_Center: {x: 0, y: 0.01024, z: 0}

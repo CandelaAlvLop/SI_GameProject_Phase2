@@ -11,6 +11,12 @@ TagManager:
   - Player1
   - Player2
   - Pattern
+  - BaconPattern
+  - CheesePattern
+  - MushroomPattern
+  - OnionPattern
+  - OlivePattern
+  - TomatoPattern
   layers:
   - Default
   - TransparentFX

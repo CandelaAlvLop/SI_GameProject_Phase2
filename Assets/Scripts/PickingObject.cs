@@ -12,7 +12,7 @@ public class PickingObject : MonoBehaviour
     
     //Auxiliar Variables for the movement of the player
     public float rotationSpeed = 30f;
-    public float moveSpeed = 5f; // Speed at which the player moves down
+    public float moveSpeed = 5f; 
 
     //Variables for pattern Matching
     public float posMargin = 4f;
@@ -21,76 +21,6 @@ public class PickingObject : MonoBehaviour
 
     public GameObject hand;
 
-
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-        if (Input.GetKey(KeyCode.DownArrow)) transform.Translate(Vector3.down * moveSpeed * Time.deltaTime);
-        if (Input.GetKey(KeyCode.UpArrow)) transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
-
-        if (ingredientInstance != null)
-        {
-            // Temporary key to increase player rotation on the X axis
-            //if (Input.GetKey(KeyCode.R))
-            //{
-            //}
-
-            playerRotation.SetRotation(rotationSpeed * Time.deltaTime);
-
-            // Check if the player's rotation in the Z axis is greater than 45 degrees
-            if (transform.rotation.eulerAngles.z > 45f)
-            {
-                DropIngredient();
-            }
-        }
-    }
-
-
-    //------- Drop Ingredient ----------
-    private void DropIngredient()
-    {
-        // Remove the ingredient from the player
-        ingredientInstance.transform.parent = null;
-        StartCoroutine(DelayedFall(ingredientInstance));
-        ingredientInstance = null; // Set the ingredientInstance to null after dropping it in this way we can take another ingredient
-
-        // Reset the player's rotation to the initial rotation
-        playerRotation.ResetRotation();
-    }
-
-
-    //------- Corutine to make the ingredient fall ------------
-    IEnumerator DelayedFall(GameObject ingredient) 
-    {   
-        // Wait for 1 seconds
-        yield return new WaitForSeconds(1);
-
-        // Adding force to make the ingrendient fall
-        Rigidbody rb = ingredient.GetComponent<Rigidbody>();
-        if (rb != null)
-        {
-            rb.isKinematic = false;
-            rb.AddForce(Vector3.down * 10, ForceMode.Impulse);
-        }
-
-        // Disable the isTrigger temporarily to allow for physics interaction
-        Collider collider = ingredient.GetComponent<Collider>();
-
-        if(collider != null) collider.isTrigger = false;
-
-        // Wait for 1 second before enabling trigger again
-        yield return new WaitForSeconds(1);
-
-        // Re-enable the Collider to allow picking it up again and isKinematic in this way the ingredient doesn't fall
-        if (collider != null) collider.isTrigger = true;
-     
-        if (rb != null) rb.isKinematic = true;
-        
-    }
 
     //------ Instantiate an ingredient when triggered by a crate ------
     void OnTriggerEnter(Collider collision)
@@ -135,8 +65,149 @@ public class PickingObject : MonoBehaviour
             ingredientInstance.transform.localPosition = spawnPosition;
         }
 
-       PickingAgainObject(collision);
+        //PickingAgainObject(collision);
 
+    }
+
+
+    //------- Functions to drop automatically when matching pattern -------
+    void FixedUpdate()
+    {
+        if (ingredientInstance != null) //Check player has an ingredient
+        {
+            GetPatternPositions();
+        }
+    }
+
+    private void GetPatternPositions()
+    {
+        CheckAndDropIngredient("Tomato", "TomatoPattern");
+        CheckAndDropIngredient("Cheese", "CheesePattern");
+        CheckAndDropIngredient("Olive", "OlivePattern");
+        CheckAndDropIngredient("Onion", "OnionPattern");
+        CheckAndDropIngredient("Bacon", "BaconPattern");
+        CheckAndDropIngredient("Mushroom", "MushroomPattern");
+    }
+
+
+    private void CheckAndDropIngredient(string ingredientName, string patternTag)
+    {
+        if (ingredientInstance != null && ingredientInstance.transform.name.Contains(ingredientName))
+        {
+            GameObject[] patterns = GameObject.FindGameObjectsWithTag(patternTag);
+            foreach (GameObject pattern in patterns)
+            {
+                if (PositionMatch(pattern.transform.position) && RotationMatch(pattern.transform.rotation))
+                {
+                    DropIngredientAtPattern(pattern.transform); // Drop ingredient if it matches position x, z, and rotation
+                    pattern.SetActive(false);
+                    return; // Exit the method once the ingredient is dropped
+                }else if(PositionMatch(pattern.transform.position)&& !RotationMatch(pattern.transform.rotation))
+                {
+
+                    Collider collider = ingredientInstance.GetComponent<Collider>();
+                    if (collider != null) collider.isTrigger = true;
+
+                    DropIngredienAtPatternPosition(pattern.transform);
+
+                }
+            }
+        }
+
+    }
+
+    private bool PositionMatch(Vector3 patternPosition)
+    {
+        Vector2 ingredientPos = new Vector2(ingredientInstance.transform.position.x, ingredientInstance.transform.position.z);
+        Vector2 patternPos = new Vector2(patternPosition.x, patternPosition.z);
+        float distance = Vector2.Distance(ingredientPos, patternPos); //Compute the distance between the ingredient and the pattern
+        Debug.Log($"Position check: distance = {distance}, margin = {posMargin}");
+        return distance <= posMargin;
+    }
+
+    private bool RotationMatch(Quaternion patternRotation)
+    {
+        float angle = Quaternion.Angle(ingredientInstance.transform.rotation, patternRotation);
+        Debug.Log($"Rotation check: angle = {angle}, margin = {rotMargin}");
+        return angle <= rotMargin;
+    }
+
+
+    private void DropIngredientAtPattern(Transform patternTransform)
+    {
+        if (ingredientInstance != null)
+        {
+            ingredientInstance.transform.SetParent(null); //Detach from Parent
+            ingredientInstance.transform.position = patternTransform.position;
+            ingredientInstance.transform.rotation = patternTransform.rotation;
+            ingredientInstance = null;
+            Debug.Log("Ingredient dropped at pattern position.");
+        }
+    }
+
+
+    private void DropIngredienAtPatternPosition(Transform patternTransform)
+    {
+        if (ingredientInstance != null)
+        {
+            ingredientInstance.transform.SetParent(null); //Detach from Parent
+            ingredientInstance.transform.position = patternTransform.position;
+            //ingredientInstance.transform.rotation = patternTransform.rotation
+            ingredientInstance = null;
+            Debug.Log("Ingredient dropped at pattern position.");
+        }
+    }
+
+
+
+    //------ OTHER FUNCTIONS ------
+
+    void Update()
+    {
+        if (Input.GetKey(KeyCode.DownArrow)) transform.Translate(Vector3.down * moveSpeed * Time.deltaTime);
+        if (Input.GetKey(KeyCode.UpArrow)) transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
+    }
+
+
+    //------- Drop Ingredient ----------
+    private void DropIngredient()
+    {
+        // Remove the ingredient from the player
+        ingredientInstance.transform.parent = null;
+        StartCoroutine(DelayedFall(ingredientInstance));
+        ingredientInstance = null; // Set the ingredientInstance to null after dropping it in this way we can take another ingredient
+        // Reset the player's rotation to the initial rotation
+        playerRotation.ResetRotation();
+    }
+
+
+    //------- Corutine to make the ingredient fall ------------
+    IEnumerator DelayedFall(GameObject ingredient) 
+    {   
+        // Wait for 1 seconds
+        yield return new WaitForSeconds(1);
+
+        // Adding force to make the ingrendient fall
+        Rigidbody rb = ingredient.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.isKinematic = false;
+            rb.AddForce(Vector3.down * 10, ForceMode.Impulse);
+        }
+
+        // Disable the isTrigger temporarily to allow for physics interaction
+        Collider collider = ingredient.GetComponent<Collider>();
+
+        if(collider != null) collider.isTrigger = false;
+
+        // Wait for 1 second before enabling trigger again
+        yield return new WaitForSeconds(1);
+
+        // Re-enable the Collider to allow picking it up again and isKinematic in this way the ingredient doesn't fall
+        if (collider != null) collider.isTrigger = true;
+     
+        if (rb != null) rb.isKinematic = true;
+        
     }
 
 
@@ -180,52 +251,6 @@ public class PickingObject : MonoBehaviour
     }
 
 
-    //------- Functions to drop automatically when matching pattern -------
-    void FixedUpdate()
-    {
-        if (ingredientInstance != null) //Check player has an ingredient
-        {
-            GetPatternPositions();
-        }
-    }
 
-    private void GetPatternPositions()
-    {
-        GameObject[] patternPositions = GameObject.FindGameObjectsWithTag("Pattern");
-
-        foreach (GameObject pattern in patternPositions)
-        {
-            if (PositionMatch(pattern.transform.position) && RotationMatch(pattern.transform.rotation))
-            {
-                DropIngredientAtPattern(pattern.transform); //Drop ingredient if it matches position x,z and rotation
-                break;
-            }
-        }
-    }
-
-    private bool PositionMatch(Vector3 patternPosition)
-    {
-        Vector2 ingredientPos = new Vector2(ingredientInstance.transform.position.x, ingredientInstance.transform.position.z);
-        Vector2 patternPos = new Vector2(patternPosition.x, patternPosition.z);
-        float distance = Vector2.Distance(ingredientPos, patternPos); //Compute the distance between the ingredient and the pattern
-        Debug.Log($"Position check: distance = {distance}, margin = {posMargin}");
-        return distance <= posMargin;
-    }
-
-    private bool RotationMatch(Quaternion patternRotation)
-    {
-        float angle = Quaternion.Angle(ingredientInstance.transform.rotation, patternRotation);
-        Debug.Log($"Rotation check: angle = {angle}, margin = {rotMargin}");
-        return angle <= rotMargin;
-    }
-
-    private void DropIngredientAtPattern(Transform patternTransform)
-    {
-        ingredientInstance.transform.SetParent(null); //Detach from Parent
-        ingredientInstance.transform.position = patternTransform.position;
-        ingredientInstance.transform.rotation = patternTransform.rotation;
-        ingredientInstance = null;
-        Debug.Log("Ingredient dropped at pattern position.");
-    }
 
 }
