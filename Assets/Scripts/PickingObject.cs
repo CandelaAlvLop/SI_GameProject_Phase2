@@ -21,6 +21,17 @@ public class PickingObject : MonoBehaviour
 
     public GameObject hand;
 
+    // Audio clip for dropping sound
+    public AudioClip dropSound;
+    private AudioSource audioSource;
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+        audioSource.volume = 1.0f;
+    }
+
+
 
     //------ Instantiate an ingredient when triggered by a crate ------
     void OnTriggerEnter(Collider collision)
@@ -59,7 +70,6 @@ public class PickingObject : MonoBehaviour
             GameObject prefab = ingredientPrefabs[crateIdx];
             Vector3 spawnPosition = new Vector3(0, hand.transform.position.y - y, 0);
             Quaternion spawnRotation = (crateIdx == 0 || crateIdx == 2) ? Quaternion.Euler(90, 0, 0) : Quaternion.identity;
-
             //Instantiate the ingredient prefab at the calculated position and rotation
             ingredientInstance = Instantiate(prefab, transform.position, spawnRotation, transform);
             ingredientInstance.transform.localPosition = spawnPosition;
@@ -97,19 +107,11 @@ public class PickingObject : MonoBehaviour
             GameObject[] patterns = GameObject.FindGameObjectsWithTag(patternTag);
             foreach (GameObject pattern in patterns)
             {
-                if (PositionMatch(pattern.transform.position) && RotationMatch(pattern.transform.rotation))
-                {
+                if (PositionMatch(pattern.transform.position))/* && RotationMatch(pattern.transform.rotation)*/
+                { 
                     DropIngredientAtPattern(pattern.transform); // Drop ingredient if it matches position x, z, and rotation
                     pattern.SetActive(false);
                     return; // Exit the method once the ingredient is dropped
-                }else if(PositionMatch(pattern.transform.position)&& !RotationMatch(pattern.transform.rotation))
-                {
-
-                    Collider collider = ingredientInstance.GetComponent<Collider>();
-                    if (collider != null) collider.isTrigger = true;
-
-                    DropIngredienAtPatternPosition(pattern.transform);
-
                 }
             }
         }
@@ -141,23 +143,16 @@ public class PickingObject : MonoBehaviour
             ingredientInstance.transform.position = patternTransform.position;
             ingredientInstance.transform.rotation = patternTransform.rotation;
             ingredientInstance = null;
+
+            // Reproduce el sonido de caída
+            if (audioSource != null && dropSound != null)
+            {
+                audioSource.PlayOneShot(dropSound);
+            }
+
             Debug.Log("Ingredient dropped at pattern position.");
         }
     }
-
-
-    private void DropIngredienAtPatternPosition(Transform patternTransform)
-    {
-        if (ingredientInstance != null)
-        {
-            ingredientInstance.transform.SetParent(null); //Detach from Parent
-            ingredientInstance.transform.position = patternTransform.position;
-            //ingredientInstance.transform.rotation = patternTransform.rotation
-            ingredientInstance = null;
-            Debug.Log("Ingredient dropped at pattern position.");
-        }
-    }
-
 
 
     //------ OTHER FUNCTIONS ------
