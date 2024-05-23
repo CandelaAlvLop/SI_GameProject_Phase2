@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CollaborativeRotation : MonoBehaviour {
+public class CollaborativeRotationIngredients : MonoBehaviour {
 
 
     //void OnTriggerStay(Collider other)

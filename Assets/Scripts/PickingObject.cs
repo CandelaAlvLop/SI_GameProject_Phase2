@@ -1,6 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public static class IngredientCounter
+{
+    // Contador global de ingredientes
+    public static int totalIngredientsPlaced = 0;
+    public static int totalIngredients = 17;
+}
 
 public class PickingObject : MonoBehaviour
 {
@@ -18,12 +26,11 @@ public class PickingObject : MonoBehaviour
     public float posMargin = 4f;
     public float rotMargin = 30f;
 
-
     public GameObject hand;
 
     // Audio clip for dropping sound
     public AudioClip dropSound;
-    private AudioSource audioSource;
+    private AudioSource audioSource; 
 
     private void Start()
     {
@@ -73,6 +80,8 @@ public class PickingObject : MonoBehaviour
             //Instantiate the ingredient prefab at the calculated position and rotation
             ingredientInstance = Instantiate(prefab, transform.position, spawnRotation, transform);
             ingredientInstance.transform.localPosition = spawnPosition;
+
+        
         }
 
         //PickingAgainObject(collision);
@@ -144,15 +153,31 @@ public class PickingObject : MonoBehaviour
             ingredientInstance.transform.rotation = patternTransform.rotation;
             ingredientInstance = null;
 
+            IngredientCounter.totalIngredientsPlaced = 17;
+            //DebuIngredientCounter.g.Log("Ingredients placed: " + IngredientCounter.totalIngredientsPlaced);
+
             // Reproduce el sonido de caída
             if (audioSource != null && dropSound != null)
             {
                 audioSource.PlayOneShot(dropSound);
             }
 
+            // Check if all ingredients have been placed
+            if (IngredientCounter.totalIngredientsPlaced == IngredientCounter.totalIngredients)
+            {
+                // All ingredients placed, do something (e.g., end game)
+                Debug.Log("All ingredients placed!");
+
+                SceneManager.LoadScene("Cook");
+            }
+
             Debug.Log("Ingredient dropped at pattern position.");
         }
+
     }
+    
+
+
 
 
     //------ OTHER FUNCTIONS ------
