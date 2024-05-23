@@ -153,30 +153,36 @@ public class PickingObject : MonoBehaviour
             ingredientInstance.transform.rotation = patternTransform.rotation;
             ingredientInstance = null;
 
-            IngredientCounter.totalIngredientsPlaced = 17;
+            IngredientCounter.totalIngredientsPlaced ++;
             //DebuIngredientCounter.g.Log("Ingredients placed: " + IngredientCounter.totalIngredientsPlaced);
 
-            // Reproduce el sonido de caída
+            // Load sound dropped element
             if (audioSource != null && dropSound != null)
             {
                 audioSource.PlayOneShot(dropSound);
             }
 
-            // Check if all ingredients have been placed
-            if (IngredientCounter.totalIngredientsPlaced == IngredientCounter.totalIngredients)
-            {
-                // All ingredients placed, do something (e.g., end game)
-                Debug.Log("All ingredients placed!");
-
-                SceneManager.LoadScene("Cook");
-            }
-
             Debug.Log("Ingredient dropped at pattern position.");
+
+            CheckingCount(IngredientCounter.totalIngredientsPlaced);
         }
 
     }
-    
 
+
+    // ----- CHECKING COUNT INGREDIENTS ----
+    void CheckingCount(int count)
+    {
+        // Check if all ingredients have been placed
+        if (IngredientCounter.totalIngredientsPlaced == IngredientCounter.totalIngredients)
+        {
+            // All ingredients placed, do something (e.g., end game)
+            Debug.Log("All ingredients placed!");
+
+            SceneManager.LoadScene("Cook");
+        }
+    }
+    
 
 
 
