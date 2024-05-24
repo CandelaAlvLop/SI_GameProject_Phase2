@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public static class IngredientCounter
 {
-    // Contador global de ingredientes
+    // Couter of ingredients
     public static int totalIngredientsPlaced = 0;
     public static int totalIngredients = 17;
 }
@@ -153,8 +153,8 @@ public class PickingObject : MonoBehaviour
             ingredientInstance.transform.rotation = patternTransform.rotation;
             ingredientInstance = null;
 
-            IngredientCounter.totalIngredientsPlaced ++;
-            //DebuIngredientCounter.g.Log("Ingredients placed: " + IngredientCounter.totalIngredientsPlaced);
+            IngredientCounter.totalIngredientsPlaced++;
+            //Debug.Log("Ingredients placed: " + IngredientCounter.totalIngredientsPlaced);
 
             // Load sound dropped element
             if (audioSource != null && dropSound != null)
