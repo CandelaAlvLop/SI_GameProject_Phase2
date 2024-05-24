@@ -11,3 +11,6 @@ Functionalities Implemented:
 - Set music sound when dropping ingredient.
   
 - When the pizza puzzle is complete, it will change of scene, to the cooking scene.
+
+Our project is still under development, its current state is the implementation of the first scene. 
+Our next step will focus on implementing the collaborative part of the game where users will rotate around the pizza to cook it, and to improve our functionalities implemented up to now.
