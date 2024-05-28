@@ -4191,6 +4191,7 @@ MonoBehaviour:
   placementRadius: 6
   startCooking: 0
   Text_Lets_Cook: {fileID: 2032694833}
+  newBackgroundMusic: {fileID: 8300000, guid: 9f6f04d813dbfdb479106a00116f3122, type: 3}
 --- !u!4 &886879017
 Transform:
   m_ObjectHideFlags: 0

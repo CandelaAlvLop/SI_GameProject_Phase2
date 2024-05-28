@@ -31,6 +31,7 @@ public class PlacePlayer : MonoBehaviour
         GameObject backgroundMusicObject = GameObject.Find("BackgroundMusic");
         backgroundMusicAudio = backgroundMusicObject.GetComponent<AudioSource>();
 
+
         connector = FindObjectOfType<PluginConnector>();
     }
 
@@ -84,8 +85,10 @@ public class PlacePlayer : MonoBehaviour
 
         if (backgroundMusicAudio != null && newBackgroundMusic != null)
         {
+            backgroundMusicAudio.volume = 1;
             backgroundMusicAudio.clip = newBackgroundMusic;
             backgroundMusicAudio.Play(); // Avvia la riproduzione della nuova clip audio
+            
         }
 
     }
