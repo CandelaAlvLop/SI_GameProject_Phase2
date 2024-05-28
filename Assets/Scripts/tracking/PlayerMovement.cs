@@ -48,6 +48,16 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+        if (other.CompareTag("Pizza"))
+        {
+            PizzaRotation pizzaRotation = other.GetComponent<PizzaRotation>();
+            if (pizzaRotation != null)
+            {
+                pizzaRotation.shouldRotate = true;
+            }
+        }
+
+
     }
 
     private void OnTriggerExit(Collider other)
@@ -55,6 +65,12 @@ public class PlayerMovement : MonoBehaviour
         if (other.CompareTag("Crate")) 
         {
             hasPlayedSound = false; 
+        }
+
+        PizzaRotation pizzaRotation = other.GetComponent<PizzaRotation>();
+        if (pizzaRotation != null)
+        {
+            pizzaRotation.shouldRotate = false;
         }
     }
 

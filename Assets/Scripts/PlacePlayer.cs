@@ -51,6 +51,7 @@ public class PlacePlayer : MonoBehaviour
         if (isPlayer1Placed && isPlayer2Placed)
         {
             OnPlayersPlaced();
+            startCooking = true;
         }
     }
 
@@ -88,6 +89,7 @@ public class PlacePlayer : MonoBehaviour
             backgroundMusicAudio.volume = 1;
             backgroundMusicAudio.clip = newBackgroundMusic;
             backgroundMusicAudio.Play(); // Avvia la riproduzione della nuova clip audio
+
             
         }
 
