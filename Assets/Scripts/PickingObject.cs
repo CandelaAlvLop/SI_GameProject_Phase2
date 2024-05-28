@@ -16,7 +16,7 @@ public class PickingObject : MonoBehaviour
     public float y;
     public GameObject ingredientInstance;
 
-    public RotationPlayer playerRotation; // Reference to script de RotationPlayer
+    public RotationLeaveIngredient playerRotation; // Reference to script de RotationLeaveIngredient
     
     //Auxiliar Variables for the movement of the player
     public float rotationSpeed = 30f;
