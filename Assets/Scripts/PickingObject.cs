@@ -17,10 +17,10 @@ public class PickingObject : MonoBehaviour
     public GameObject ingredientInstance;
 
     public RotationLeaveIngredient playerRotation; // Reference to script de RotationLeaveIngredient
-    
+
     //Auxiliar Variables for the movement of the player
     public float rotationSpeed = 30f;
-    public float moveSpeed = 5f; 
+    public float moveSpeed = 5f;
 
     //Variables for pattern Matching
     public float posMargin = 4f;
@@ -30,15 +30,30 @@ public class PickingObject : MonoBehaviour
 
     // Audio clip for dropping sound
     public AudioClip dropSound;
-    private AudioSource audioSource; 
+    private AudioSource audioSource;
+
+    private int[] remainingPatterns;
 
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
         audioSource.volume = 1.0f;
+        InitializeRemainingPatterns();
     }
 
+    private void InitializeRemainingPatterns()
+    {
+        // Assuming there are 6 types of ingredients
+        remainingPatterns = new int[6];
 
+        // Initialize the pattern counts based on the number of patterns in the scene
+        remainingPatterns[0] = GameObject.FindGameObjectsWithTag("MushroomPattern").Length;
+        remainingPatterns[1] = GameObject.FindGameObjectsWithTag("OlivePattern").Length;
+        remainingPatterns[2] = GameObject.FindGameObjectsWithTag("BaconPattern").Length;
+        remainingPatterns[3] = GameObject.FindGameObjectsWithTag("OnionPattern").Length;
+        remainingPatterns[4] = GameObject.FindGameObjectsWithTag("CheesePattern").Length;
+        remainingPatterns[5] = GameObject.FindGameObjectsWithTag("TomatoPattern").Length;
+    }
 
     //------ Instantiate an ingredient when triggered by a crate ------
     void OnTriggerEnter(Collider collision)
@@ -72,7 +87,7 @@ public class PickingObject : MonoBehaviour
         }
 
         //Check if the player already has an ingredient and a valid crate index was found
-        if (ingredientInstance == null && crateIdx != -1)
+        if (ingredientInstance == null && crateIdx != -1 && remainingPatterns[crateIdx] > 0)
         {
             GameObject prefab = ingredientPrefabs[crateIdx];
             Vector3 spawnPosition = new Vector3(0, hand.transform.position.y - y, 0);
@@ -81,7 +96,7 @@ public class PickingObject : MonoBehaviour
             ingredientInstance = Instantiate(prefab, transform.position, spawnRotation, transform);
             ingredientInstance.transform.localPosition = spawnPosition;
 
-        
+
         }
 
         //PickingAgainObject(collision);
@@ -100,16 +115,16 @@ public class PickingObject : MonoBehaviour
 
     private void GetPatternPositions()
     {
-        CheckAndDropIngredient("Tomato", "TomatoPattern");
-        CheckAndDropIngredient("Cheese", "CheesePattern");
-        CheckAndDropIngredient("Olive", "OlivePattern");
-        CheckAndDropIngredient("Onion", "OnionPattern");
-        CheckAndDropIngredient("Bacon", "BaconPattern");
-        CheckAndDropIngredient("Mushroom", "MushroomPattern");
+        CheckAndDropIngredient("Tomato", "TomatoPattern", 5);
+        CheckAndDropIngredient("Cheese", "CheesePattern", 4);
+        CheckAndDropIngredient("Olive", "OlivePattern", 1);
+        CheckAndDropIngredient("Onion", "OnionPattern", 3);
+        CheckAndDropIngredient("Bacon", "BaconPattern", 2);
+        CheckAndDropIngredient("Mushroom", "MushroomPattern", 0);
     }
 
 
-    private void CheckAndDropIngredient(string ingredientName, string patternTag)
+    private void CheckAndDropIngredient(string ingredientName, string patternTag, int patternIndex)
     {
         if (ingredientInstance != null && ingredientInstance.transform.name.Contains(ingredientName))
         {
@@ -117,9 +132,10 @@ public class PickingObject : MonoBehaviour
             foreach (GameObject pattern in patterns)
             {
                 if (PositionMatch(pattern.transform.position))/* && RotationMatch(pattern.transform.rotation)*/
-                { 
+                {
                     DropIngredientAtPattern(pattern.transform); // Drop ingredient if it matches position x, z, and rotation
                     pattern.SetActive(false);
+                    remainingPatterns[patternIndex]--;
                     return; // Exit the method once the ingredient is dropped
                 }
             }
@@ -182,7 +198,7 @@ public class PickingObject : MonoBehaviour
             SceneManager.LoadScene("Cook");
         }
     }
-    
+
 
 
 
@@ -208,8 +224,8 @@ public class PickingObject : MonoBehaviour
 
 
     //------- Corutine to make the ingredient fall ------------
-    IEnumerator DelayedFall(GameObject ingredient) 
-    {   
+    IEnumerator DelayedFall(GameObject ingredient)
+    {
         // Wait for 1 seconds
         yield return new WaitForSeconds(1);
 
@@ -224,16 +240,16 @@ public class PickingObject : MonoBehaviour
         // Disable the isTrigger temporarily to allow for physics interaction
         Collider collider = ingredient.GetComponent<Collider>();
 
-        if(collider != null) collider.isTrigger = false;
+        if (collider != null) collider.isTrigger = false;
 
         // Wait for 1 second before enabling trigger again
         yield return new WaitForSeconds(1);
 
         // Re-enable the Collider to allow picking it up again and isKinematic in this way the ingredient doesn't fall
         if (collider != null) collider.isTrigger = true;
-     
+
         if (rb != null) rb.isKinematic = true;
-        
+
     }
 
 
@@ -275,6 +291,9 @@ public class PickingObject : MonoBehaviour
         }
         return -1;
     }
+
+
+
 
 
 
