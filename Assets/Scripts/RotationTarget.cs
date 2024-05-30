@@ -3,28 +3,27 @@ using UnityEngine.UI;
 
 public class RotationTarget : MonoBehaviour
 {
+    
     public float rotationSpeed;
     public GameObject pivotPizza;
 
     //-- Pizza elements --
-   // public GameObject pizzaCooked;
     public GameObject pizzaUncooked;
 
-    private float activationDelay = 30.0f;
+    private float activationDelay = 60.0f;
     private float timer = 0.0f;
 
     public TextMesh timerText;
 
     private PizzaRotation pizzaRotation;
 
-    // Referencia directa al script PlacePlayer
+    // Reference to PlacePlayer script
     public PlacePlayer placePlayerScript;
+
 
     private void Start()
     {
-
-
-
+        pizzaRotation = FindObjectOfType<PizzaRotation>();
     }
 
     void Update()
@@ -48,14 +47,18 @@ public class RotationTarget : MonoBehaviour
             {
                 timerText.text = "WELL DONE";
 
-         
+                //stop the target rotation and we make it dissapear
+                rotationSpeed = 0f;
+
+                //Stop Pizza Rotation
+                pizzaRotation.shouldRotate = false;
 
             }
             
         }
     }
 
-
+  
 
     //---- Function to rotate the object around the pivot ----
     void RotateObject(float angle)

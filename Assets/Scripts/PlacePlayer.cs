@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlacePlayer : MonoBehaviour
 {
-    public Transform player1;  // Reference to the first player
-    public Transform player2;  // Reference to the second player
+    public GameObject player1;  // Reference to the first player
+    public GameObject player2;  // Reference to the second player
     public GameObject mark1;
     public GameObject mark2;
     public float placementRadius = 1.0f;  // Acceptance radius for placement
@@ -36,12 +36,12 @@ public class PlacePlayer : MonoBehaviour
     {
         if (!isPlayer1Placed)
         {
-            isPlayer1Placed = CheckPlacement(player1, mark1.transform, "Player 1");
+            isPlayer1Placed = CheckPlacement(player1.transform, mark1.transform, "Player 1");
         }
 
         if (!isPlayer2Placed)
         {
-            isPlayer2Placed = CheckPlacement(player2, mark2.transform, "Player 2");
+            isPlayer2Placed = CheckPlacement(player2.transform, mark2.transform, "Player 2");
         }
 
         if (isPlayer1Placed && isPlayer2Placed)

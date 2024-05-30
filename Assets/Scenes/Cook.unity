@@ -1853,7 +1853,7 @@ Transform:
   m_Children:
   - {fileID: 1583897120}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &309036271
 MonoBehaviour:
@@ -1869,7 +1869,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 0.5
   pivotPizza: {fileID: 2090450474}
-  pizzaCooked: {fileID: 642295817}
   pizzaUncooked: {fileID: 2090450474}
   timerText: {fileID: 1538220610}
   placePlayerScript: {fileID: 886879016}
@@ -3232,11 +3231,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12c364ca505afb3409db68f11f44d9f9, type: 3}
---- !u!1 &642295817 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6437758264009071710, guid: 2c196a56a85258441858824bdb167e3e, type: 3}
-  m_PrefabInstance: {fileID: 1783243006}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &689117878
 GameObject:
   m_ObjectHideFlags: 0
@@ -4159,7 +4153,7 @@ Transform:
   m_Children:
   - {fileID: 301616679}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &882758482 stripped
 GameObject:
@@ -4208,8 +4202,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45fe7e6aa3ca4ce4db1f23bed7219031, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1: {fileID: 1440896351}
-  player2: {fileID: 1471923279}
+  player1: {fileID: 1440896347}
+  player2: {fileID: 1471923275}
   mark1: {fileID: 851977186}
   mark2: {fileID: 1497803227}
   placementRadius: 6
@@ -6205,7 +6199,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1440896347}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25, y: 0, z: 25}
+  m_LocalPosition: {x: 20.4, y: 0, z: 25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2018406816}
@@ -6866,7 +6860,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1471923275}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 25, y: 0, z: 75}
+  m_LocalPosition: {x: 87.3, y: 0, z: 75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1201344088}
@@ -7327,7 +7321,7 @@ Transform:
   m_Children:
   - {fileID: 269320096}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1538220609
 GameObject:
@@ -7466,7 +7460,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -8435,63 +8429,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1783243006
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 5916695977899116260, guid: 2c196a56a85258441858824bdb167e3e, type: 3}
-      propertyPath: m_RootOrder
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 5916695977899116260, guid: 2c196a56a85258441858824bdb167e3e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 5916695977899116260, guid: 2c196a56a85258441858824bdb167e3e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5916695977899116260, guid: 2c196a56a85258441858824bdb167e3e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 5916695977899116260, guid: 2c196a56a85258441858824bdb167e3e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5916695977899116260, guid: 2c196a56a85258441858824bdb167e3e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5916695977899116260, guid: 2c196a56a85258441858824bdb167e3e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5916695977899116260, guid: 2c196a56a85258441858824bdb167e3e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5916695977899116260, guid: 2c196a56a85258441858824bdb167e3e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5916695977899116260, guid: 2c196a56a85258441858824bdb167e3e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5916695977899116260, guid: 2c196a56a85258441858824bdb167e3e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6437758264009071710, guid: 2c196a56a85258441858824bdb167e3e, type: 3}
-      propertyPath: m_Name
-      value: Pizza Cooked
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 2c196a56a85258441858824bdb167e3e, type: 3}
 --- !u!1 &1829244899
 GameObject:
   m_ObjectHideFlags: 0
@@ -10060,7 +9997,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -10611,8 +10548,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ace96abf26662ab49bfb4559f07e3044, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 5
   shouldRotate: 0
+  rotationSpeed: 5
+  tomatoPizzaMaterial: {fileID: 2100000, guid: c92452edca127a44d8b4dd6396d3a0d9, type: 2}
+  breadPizzaMaterial: {fileID: 2100000, guid: 1f75c4ec3262744439501a9d556eb2cd, type: 2}
 --- !u!65 &2090450476
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10624,8 +10563,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.6997478, y: 1.8626524, z: 3.3036451}
-  m_Center: {x: -0.030667793, y: 0.4313232, z: 0.0054812115}
+  m_Size: {x: 3.224952, y: 0.6623516, z: 3.2101088}
+  m_Center: {x: 0, y: 0.07, z: 0}
 --- !u!1 &2119985756 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8164078558771037576, guid: 9fba3e7f8e61da749ace5677ab456713, type: 3}
