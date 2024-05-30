@@ -86,21 +86,18 @@ public class PickingObject : MonoBehaviour
 
         }
 
-        //Check if the player already has an ingredient and a valid crate index was found
+        // Check if the player already has an ingredient, a valid crate index was found, and there are remaining patterns for that ingredient
         if (ingredientInstance == null && crateIdx != -1 && remainingPatterns[crateIdx] > 0)
         {
             GameObject prefab = ingredientPrefabs[crateIdx];
             Vector3 spawnPosition = new Vector3(0, hand.transform.position.y - y, 0);
             Quaternion spawnRotation = (crateIdx == 0 || crateIdx == 2) ? Quaternion.Euler(90, 0, 0) : Quaternion.identity;
-            //Instantiate the ingredient prefab at the calculated position and rotation
+
+            // Instantiate the ingredient prefab at the calculated position and rotation
             ingredientInstance = Instantiate(prefab, transform.position, spawnRotation, transform);
             ingredientInstance.transform.localPosition = spawnPosition;
-
-
         }
-
-        //PickingAgainObject(collision);
-
+        
     }
 
 
@@ -210,74 +207,6 @@ public class PickingObject : MonoBehaviour
         if (Input.GetKey(KeyCode.UpArrow)) transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
     }
 
-
-    //------- Drop Ingredient ----------
-    private void DropIngredient()
-    {
-        // Remove the ingredient from the player
-        ingredientInstance.transform.parent = null;
-        StartCoroutine(DelayedFall(ingredientInstance));
-        ingredientInstance = null; // Set the ingredientInstance to null after dropping it in this way we can take another ingredient
-        // Reset the player's rotation to the initial rotation
-        playerRotation.ResetRotation();
-    }
-
-
-    //------- Corutine to make the ingredient fall ------------
-    IEnumerator DelayedFall(GameObject ingredient)
-    {
-        // Wait for 1 seconds
-        yield return new WaitForSeconds(1);
-
-        // Adding force to make the ingrendient fall
-        Rigidbody rb = ingredient.GetComponent<Rigidbody>();
-        if (rb != null)
-        {
-            rb.isKinematic = false;
-            rb.AddForce(Vector3.down * 10, ForceMode.Impulse);
-        }
-
-        // Disable the isTrigger temporarily to allow for physics interaction
-        Collider collider = ingredient.GetComponent<Collider>();
-
-        if (collider != null) collider.isTrigger = false;
-
-        // Wait for 1 second before enabling trigger again
-        yield return new WaitForSeconds(1);
-
-        // Re-enable the Collider to allow picking it up again and isKinematic in this way the ingredient doesn't fall
-        if (collider != null) collider.isTrigger = true;
-
-        if (rb != null) rb.isKinematic = true;
-
-    }
-
-
-    //----- Function to pick up an object again -----
-    private void PickingAgainObject(Collider collision)
-    {
-        if (ingredientInstance == null)
-        {
-
-            if (collision.gameObject.CompareTag("Ingredient"))
-            {
-                int index = GetIngredientIndexByName(collision.gameObject.name);
-
-                print(index);
-
-                // Make the colliding object a child of the player
-                ingredientInstance = collision.gameObject;
-                ingredientInstance.transform.SetParent(transform);
-
-                // Reset position and rotation of the ingredient to match the player
-                Quaternion spawnRotation = (index == 0 || index == 2) ? Quaternion.Euler(90, 0, 0) : Quaternion.identity;
-                ingredientInstance.transform.localRotation = spawnRotation;
-                ingredientInstance.transform.localPosition = new Vector3(0, hand.transform.position.y - y, 0);
-
-
-            }
-        }
-    }
 
     //---- Searches for an ingredient in a list based on its name and returns its index ---
     public int GetIngredientIndexByName(string name)

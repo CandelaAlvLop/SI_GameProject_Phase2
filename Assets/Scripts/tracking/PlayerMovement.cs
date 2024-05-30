@@ -13,10 +13,20 @@ public class PlayerMovement : MonoBehaviour
     private AudioSource audioSource;
     private bool hasPlayedSound = false;
 
+    public PlacePlayer place;
+
+    private PickingObject pickingObject;
+
+    private PizzaRotation pizzaRotation;
 
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        pickingObject = GetComponent<PickingObject>();
+
+        // Ensure PlacePlayer reference is set
+        if (place == null) place = FindObjectOfType<PlacePlayer>();
+       
     }
 
     // Update is called once per frame
@@ -39,7 +49,9 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Crate") && !hasPlayedSound)
+        Debug.Log("TAG: " + other.tag);
+
+        if (other.CompareTag("Crate") && !hasPlayedSound && pickingObject.ingredientInstance == null)
         {
             if (collisionSound != null && audioSource != null)
             {
@@ -48,9 +60,10 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (other.CompareTag("Pizza"))
+        Debug.Log(place.startCooking);
+        if (other.CompareTag("Pizza") && place != null && place.startCooking)
         {
-            PizzaRotation pizzaRotation = other.GetComponent<PizzaRotation>();
+            pizzaRotation = other.GetComponent<PizzaRotation>();
             if (pizzaRotation != null)
             {
                 pizzaRotation.shouldRotate = true;
@@ -62,15 +75,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Crate")) 
+        if (other.CompareTag("Crate"))
         {
-            hasPlayedSound = false; 
+            hasPlayedSound = false;
         }
 
-        PizzaRotation pizzaRotation = other.GetComponent<PizzaRotation>();
-        if (pizzaRotation != null)
+        if (other.CompareTag("Pizza") && pizzaRotation != null)
         {
             pizzaRotation.shouldRotate = false;
+            pizzaRotation = null;
         }
     }
 
