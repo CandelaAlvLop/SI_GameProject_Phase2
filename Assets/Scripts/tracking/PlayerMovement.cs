@@ -60,7 +60,6 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        //Debug.Log(place.startCooking);
         if (other.CompareTag("Pizza") && place != null && place.startCooking)
         {
             pizzaRotation = other.GetComponent<PizzaRotation>();
