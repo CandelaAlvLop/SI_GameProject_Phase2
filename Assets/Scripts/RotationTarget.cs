@@ -12,12 +12,12 @@ public class RotationTarget : MonoBehaviour
     private float activationDelay = 60.0f;
     private float timer = 0.0f;
     private PizzaRotation pizzaRotation;
-    private AudioSource audioSource; // Reference to the AudioSource component
+   // private AudioSource audioSource; // Reference to the AudioSource component
 
     private void Start()
     {
         pizzaRotation = FindObjectOfType<PizzaRotation>();
-        audioSource = GetComponent<AudioSource>(); // Get the AudioSource component
+        //audioSource = GetComponent<AudioSource>(); // Get the AudioSource component
     }
 
     void Update()
@@ -48,9 +48,9 @@ public class RotationTarget : MonoBehaviour
         transform.RotateAround(pivotPizza.transform.position, Vector3.up, angle);
 
         // Play the audio clip
-        if (!audioSource.isPlaying) // Check if the audio is not already playing
-        {
-            audioSource.Play();
-        }
+        //if (!audioSource.isPlaying) // Check if the audio is not already playing
+        //{
+        //    audioSource.Play();
+        //}
     }
 }

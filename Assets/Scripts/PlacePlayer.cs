@@ -21,6 +21,12 @@ public class PlacePlayer : MonoBehaviour
     private AudioSource backgroundMusicAudio;  // Reference to the AudioSource of the background music
     public AudioClip cookingMusicClip;
 
+    // Audio sources of the players
+    private AudioSource player1AudioSource;
+    private AudioSource player2AudioSource;
+
+    public AudioClip placementClip;
+
     void Start()
     {
         Text_Lets_Cook.SetActive(true);
@@ -30,18 +36,24 @@ public class PlacePlayer : MonoBehaviour
         {
             backgroundMusicAudio = backgroundMusicObject.GetComponent<AudioSource>();
         }
+
+
+        player1AudioSource = player1.GetComponent<AudioSource>();
+        player2AudioSource = player2.GetComponent<AudioSource>();
     }
 
     void Update()
     {
         if (!isPlayer1Placed)
         {
-            isPlayer1Placed = CheckPlacement(player1.transform, mark1.transform, "Player 1");
+            isPlayer1Placed = CheckPlacement(player1.transform, mark1.transform, "Player 1", player1AudioSource);
+
         }
 
         if (!isPlayer2Placed)
         {
-            isPlayer2Placed = CheckPlacement(player2.transform, mark2.transform, "Player 2");
+            isPlayer2Placed = CheckPlacement(player2.transform, mark2.transform, "Player 2", player2AudioSource);
+
         }
 
         if (isPlayer1Placed && isPlayer2Placed)
@@ -50,11 +62,14 @@ public class PlacePlayer : MonoBehaviour
         }
     }
 
-    bool CheckPlacement(Transform player, Transform mark, string playerName)
+    bool CheckPlacement(Transform player, Transform mark, string playerName, AudioSource playerAudioSource)
     {
         float distance = Vector3.Distance(player.position, mark.position);
         if (distance <= placementRadius)
         {
+            playerAudioSource.clip = placementClip;
+            playerAudioSource.Play();
+
             return true;
         }
         return false;
@@ -69,9 +84,9 @@ public class PlacePlayer : MonoBehaviour
 
         // Stop the background music
         if (backgroundMusicAudio != null && cookingMusicClip != null)
-        if (backgroundMusicAudio != null && cookingMusicClip != null)
         {
             backgroundMusicAudio.clip = cookingMusicClip;
+            backgroundMusicAudio.volume = 1;
             backgroundMusicAudio.Play();
         }
 
