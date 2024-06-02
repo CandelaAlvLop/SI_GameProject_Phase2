@@ -2683,8 +2683,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 12800000, guid: 652f7165b7c30ab46af6c4aad90a639b, type: 2}
     - target: {fileID: 7968627149674486250, guid: d77199b84e3e78b4fad56d86bd84c311, type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7968627149674486250, guid: d77199b84e3e78b4fad56d86bd84c311, type: 3}
       propertyPath: m_FontData.m_FontSize
-      value: 16
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7968627149674486252, guid: d77199b84e3e78b4fad56d86bd84c311, type: 3}
       propertyPath: m_Text
@@ -10362,7 +10366,7 @@ TextMesh:
   m_Alignment: 1
   m_TabSize: 4
   m_FontSize: 0
-  m_FontStyle: 3
+  m_FontStyle: 0
   m_RichText: 1
   m_Font: {fileID: 12800000, guid: 652f7165b7c30ab46af6c4aad90a639b, type: 2}
   m_Color:
