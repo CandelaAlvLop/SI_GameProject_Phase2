@@ -10,14 +10,14 @@ public class RotationTarget : MonoBehaviour
     public PlacePlayer placePlayerScript;
 
     public AudioClip wellDoneClip;
-    public AudioClip timerTickClip;
+    //public AudioClip timerTickClip;
 
     private float activationDelay = 30.0f;
     private float timer = 0.0f;
     private PizzaRotation pizzaRotation;
     private AudioSource audioSource; // Reference to the AudioSource component
     private bool wellDoneAudioPlayed = false;
-    private bool timerAudioPlaying = false;
+    //private bool timerAudioPlaying = false;
 
 
 
@@ -38,7 +38,7 @@ public class RotationTarget : MonoBehaviour
 
             timer += Time.deltaTime;
             timerText.text = string.Format("{0:00}:{1:00}", Mathf.FloorToInt(timer / 60), Mathf.FloorToInt(timer % 60));
-            PlayTimerTickAudio();
+            //PlayTimerTickAudio();
 
 
             if (timer >= activationDelay)
@@ -76,15 +76,15 @@ public class RotationTarget : MonoBehaviour
         }
     }
 
-    void PlayTimerTickAudio()
-    {
-        AudioSource audioSource = FindObjectOfType<AudioSource>();
-        if (timerTickClip != null)
-        {
-            audioSource.clip = timerTickClip;
-            audioSource.loop = true; 
-            audioSource.Play();
-            timerAudioPlaying = true;
-        }
-    }
+    //void PlayTimerTickAudio()
+    //{
+    //    AudioSource audioSource = FindObjectOfType<AudioSource>();
+    //    if (timerTickClip != null)
+    //    {
+    //        audioSource.clip = timerTickClip;
+    //        audioSource.loop = true; 
+    //        audioSource.Play();
+    //        timerAudioPlaying = true;
+    //    }
+    //}
 }
