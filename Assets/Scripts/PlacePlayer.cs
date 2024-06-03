@@ -32,16 +32,9 @@ public class PlacePlayer : MonoBehaviour
 
     public AudioClip placementClip;
 
-    //Pizza Box Collider
-    BoxCollider boxCollider;
-
     void Start()
     {
         Text_Lets_Cook.SetActive(true);
-
-        // Find and get the BoxCollider component from the "Pizza Uncooked" game object
-        GameObject pizza = GameObject.Find("Pizza Uncooked");
-        boxCollider = pizza.GetComponent<BoxCollider>();
 
         //--- Audio Part ---
         // Find and get the AudioSource component from the background music object
