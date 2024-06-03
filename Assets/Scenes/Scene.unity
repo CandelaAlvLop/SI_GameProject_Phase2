@@ -3066,7 +3066,7 @@ MonoBehaviour:
   cameras:
   - {fileID: 342261394}
   - {fileID: 2041817079}
-  enableTracking: 0
+  enableTracking: 1
   numberOfPlayers: 2
   numberOfBaseStations: 4
   screenToWorldPosTracking: 1
@@ -5934,7 +5934,6 @@ MonoBehaviour:
   - {fileID: 5014873542352102914, guid: 0280bac31fdf1af4bb4cf6417e877789, type: 3}
   y: 1
   ingredientInstance: {fileID: 0}
-  playerRotation: {fileID: 1440896356}
   rotationSpeed: 30
   moveSpeed: 20
   posMargin: 4
@@ -5953,6 +5952,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e64488c5cd3a32a4d9430d3985921069, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialRotation: {x: 0, y: 0, z: 0, w: 0}
+  player2: 0
 --- !u!1 &1448092806
 GameObject:
   m_ObjectHideFlags: 0
@@ -6608,7 +6609,6 @@ MonoBehaviour:
   - {fileID: 5014873542352102914, guid: 0280bac31fdf1af4bb4cf6417e877789, type: 3}
   y: 1
   ingredientInstance: {fileID: 0}
-  playerRotation: {fileID: 1471923284}
   rotationSpeed: 30
   moveSpeed: 20
   posMargin: 4
@@ -6627,6 +6627,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e64488c5cd3a32a4d9430d3985921069, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialRotation: {x: 0, y: 0, z: 0, w: 0}
+  player2: 0
 --- !u!1 &1483708435
 GameObject:
   m_ObjectHideFlags: 0
