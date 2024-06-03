@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class PizzaRotation : MonoBehaviour
 {
+    // Flag to control rotation
     public bool shouldRotate = false;
+
+    // Speed of rotation
     public float rotationSpeed = 10f;
 
     //New Materials of the Pizza
@@ -16,7 +19,10 @@ public class PizzaRotation : MonoBehaviour
     private Material defaultBreadMaterial;
     private Renderer defaultRenderer;
 
-    private float colorTransitionDuration = 20.0f;
+    // Duration of the color transition
+    private float colorTransitionDuration = 18.0f;
+
+    // Timer to track the color transition
     private float colorTransitionTimer = 0.0f;
 
     private void Start()
@@ -41,6 +47,7 @@ public class PizzaRotation : MonoBehaviour
             // Execute color transition
             if (colorTransitionTimer < colorTransitionDuration)
             {
+                // Increment timer by delta time
                 colorTransitionTimer += 1/Time.deltaTime;
 
                 // Calculate transition completion ratio

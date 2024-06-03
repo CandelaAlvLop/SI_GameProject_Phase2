@@ -12,17 +12,20 @@ public static class IngredientCounter
 
 public class PickingObject : MonoBehaviour
 {
-    public List<GameObject> ingredientPrefabs;  //List of possible ingredients
-    public float y;
-    public GameObject ingredientInstance;
+    //List of possible ingredients
+    public List<GameObject> ingredientPrefabs;
 
-    public RotationLeaveIngredient playerRotation; // Reference to script de RotationLeaveIngredient
+    // Vertical offset for ingredient position
+    public float y;
+
+    // Current picked up ingredient
+    public GameObject ingredientInstance;
 
     //Auxiliar Variables for the movement of the player
     public float rotationSpeed = 30f;
     public float moveSpeed = 5f;
 
-    //Variables for pattern Matching
+    // Margins for position and rotation matching with patterns
     public float posMargin = 4f;
     public float rotMargin = 30f;
 
@@ -32,10 +35,12 @@ public class PickingObject : MonoBehaviour
     public AudioClip dropSound;
     private AudioSource audioSource;
 
+    // Array to track remaining patterns for each ingredient type
     private int[] remainingPatterns;
 
     private void Start()
     {
+        // Initialize the audio source component and remaining patterns
         audioSource = GetComponent<AudioSource>();
         audioSource.volume = 1.0f;
         InitializeRemainingPatterns();
@@ -106,12 +111,15 @@ public class PickingObject : MonoBehaviour
     {
         if (ingredientInstance != null) //Check player has an ingredient
         {
-            GetPatternPositions();
+            GetPatternPositions(); // Check for matching patterns and drop the ingredient if a match is found
         }
     }
 
+
+    //--- Check for Matching Patterns and Drop Ingredient ---
     private void GetPatternPositions()
     {
+        // These methods check if the current ingredient matches any of the patterns on the pizza
         CheckAndDropIngredient("Tomato", "TomatoPattern", 5);
         CheckAndDropIngredient("Cheese", "CheesePattern", 4);
         CheckAndDropIngredient("Olive", "OlivePattern", 1);
@@ -121,6 +129,7 @@ public class PickingObject : MonoBehaviour
     }
 
 
+    //--- Check and Drop Ingredient at Matching Pattern ---
     private void CheckAndDropIngredient(string ingredientName, string patternTag, int patternIndex)
     {
         if (ingredientInstance != null && ingredientInstance.transform.name.Contains(ingredientName))
@@ -140,6 +149,8 @@ public class PickingObject : MonoBehaviour
 
     }
 
+
+    //---- Check if Ingredient Position Matches Pattern position ----
     private bool PositionMatch(Vector3 patternPosition)
     {
         Vector2 ingredientPos = new Vector2(ingredientInstance.transform.position.x, ingredientInstance.transform.position.z);
@@ -149,6 +160,7 @@ public class PickingObject : MonoBehaviour
         return distance <= posMargin;
     }
 
+    //---- Check if Ingredient Rotation Matches Pattern ----
     private bool RotationMatch(Quaternion patternRotation)
     {
         float angle = Quaternion.Angle(ingredientInstance.transform.rotation, patternRotation);
@@ -157,6 +169,7 @@ public class PickingObject : MonoBehaviour
     }
 
 
+    //---- Drop Ingredient and detach it from the player ----
     private void DropIngredientAtPattern(Transform patternTransform)
     {
         if (ingredientInstance != null)
@@ -166,8 +179,8 @@ public class PickingObject : MonoBehaviour
             ingredientInstance.transform.rotation = patternTransform.rotation;
             ingredientInstance = null;
 
-            IngredientCounter.totalIngredientsPlaced++;
-            //Debug.Log("Ingredients placed: " + IngredientCounter.totalIngredientsPlaced);
+            IngredientCounter.totalIngredientsPlaced++; // Increment the count of placed ingredients
+            Debug.Log("Ingredients placed: " + IngredientCounter.totalIngredientsPlaced);
 
             // Load sound dropped element
             if (audioSource != null && dropSound != null)
@@ -192,6 +205,7 @@ public class PickingObject : MonoBehaviour
             // All ingredients placed, do something (e.g., end game)
             Debug.Log("All ingredients placed!");
 
+            // Changing of Scene
             SceneManager.LoadScene("Cook");
         }
     }
@@ -201,6 +215,7 @@ public class PickingObject : MonoBehaviour
 
     //------ OTHER FUNCTIONS ------
 
+    //------ Handle Player Movement Up and Down (Auxiliary Function to test some behaviours) ------
     void Update()
     {
         if (Input.GetKey(KeyCode.DownArrow)) transform.Translate(Vector3.down * moveSpeed * Time.deltaTime);
@@ -211,6 +226,8 @@ public class PickingObject : MonoBehaviour
     //---- Searches for an ingredient in a list based on its name and returns its index ---
     public int GetIngredientIndexByName(string name)
     {
+
+        // Search for an ingredient in the list based on its name and return its index
         for (int i = 0; i < ingredientPrefabs.Count; i++)
         {
             if (name.Contains(ingredientPrefabs[i].name))
