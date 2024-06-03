@@ -42,7 +42,7 @@ public class PizzaRotation : MonoBehaviour
         {
 
             // Rotate the pizza
-            transform.Rotate(Vector3.up, -1 * rotationSpeed * Time.deltaTime);
+            transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
 
             // Execute color transition
             if (colorTransitionTimer < colorTransitionDuration)

@@ -37,7 +37,7 @@ public class RotationTarget : MonoBehaviour
         if (placePlayerScript != null && placePlayerScript.startCooking)
         {
             // Rotate the target around the pizza
-            RotateObject(angle * rotationSpeed * Time.deltaTime);
+            RotateObject(-1*angle * rotationSpeed * Time.deltaTime);
 
             // Update the timer
             timer += Time.deltaTime;

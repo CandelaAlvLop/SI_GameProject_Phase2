@@ -1870,7 +1870,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 0.5
   pivotPizza: {fileID: 2090450474}
-  pizzaUncooked: {fileID: 2090450474}
   timerText: {fileID: 1802035853}
   placePlayerScript: {fileID: 886879016}
   wellDoneClip: {fileID: 8300000, guid: bcba21a124a2ea54eafb1adf28e4785b, type: 3}
@@ -6931,7 +6930,6 @@ MonoBehaviour:
   - {fileID: 5014873542352102914, guid: 0280bac31fdf1af4bb4cf6417e877789, type: 3}
   y: 1
   ingredientInstance: {fileID: 0}
-  playerRotation: {fileID: 0}
   rotationSpeed: 30
   moveSpeed: 10
   posMargin: 4
@@ -7592,7 +7590,6 @@ MonoBehaviour:
   - {fileID: 5014873542352102914, guid: 0280bac31fdf1af4bb4cf6417e877789, type: 3}
   y: 1
   ingredientInstance: {fileID: 0}
-  playerRotation: {fileID: 0}
   rotationSpeed: 30
   moveSpeed: 10
   posMargin: 4
