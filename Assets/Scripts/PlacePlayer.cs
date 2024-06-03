@@ -66,7 +66,7 @@ public class PlacePlayer : MonoBehaviour
         player1AudioSource = player1.GetComponent<AudioSource>();
         player2AudioSource = player2.GetComponent<AudioSource>();
 
-        boxCollider.enabled = false;
+       // boxCollider.enabled = false;
 
     }
 
@@ -116,7 +116,7 @@ public class PlacePlayer : MonoBehaviour
         mark2.SetActive(false);
         Text_Lets_Cook.SetActive(false);
       
-        // Set startCooking to true tu start the cooking process
+        // Set startCooking to true to start the cooking process
         startCooking = true;
 
 
@@ -126,7 +126,7 @@ public class PlacePlayer : MonoBehaviour
         // Play the timer audio if it is not already playing
         if (!timerAudioSource.isPlaying) timerAudioSource.Play();
 
-        boxCollider.enabled = true;
+        //boxCollider.enabled = true;
 
 
     }

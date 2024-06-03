@@ -5,20 +5,7 @@ using UnityEngine;
 public class CollaborativeRotationIngredients : MonoBehaviour {
 
 
-    //void OnTriggerStay(Collider other)
-    //{
-    //    // Check if the object triggering the event has the tag "Player"
-    //    if (other.CompareTag("Player"))
-    //    {
-    //        // Check if the object is also in contact with another object tagged as "Player"
-    //        if (other.GetComponent<Collider>().bounds.Intersects(GetComponent<Collider>().bounds))
-    //        {
-    //            transform.Rotate(Vector3.up, 120f);
-    //        }
 
-    //    }
-
-    //}
     public float rotationSpeed = 30f; // Rotation speed in degrees per second
 
     private HashSet<string> playersInTrigger = new HashSet<string>();
