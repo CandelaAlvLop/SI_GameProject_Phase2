@@ -37,7 +37,7 @@ public class RotationTarget : MonoBehaviour
         if (placePlayerScript != null && placePlayerScript.startCooking)
         {
             // Rotate the target around the pizza
-            RotateObject(-1*angle * rotationSpeed * Time.deltaTime);
+            RotateObject(-1 * angle * rotationSpeed * Time.deltaTime);
 
             // Update the timer
             timer += Time.deltaTime;
@@ -55,7 +55,6 @@ public class RotationTarget : MonoBehaviour
                 PlayWellDoneAudio();
                 timerAudioSource.Stop();
             }
-
         }
     }
 
@@ -78,6 +77,4 @@ public class RotationTarget : MonoBehaviour
             wellDoneAudioPlayed = true;
         }
     }
-
-
 }

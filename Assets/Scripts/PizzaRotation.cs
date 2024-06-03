@@ -31,8 +31,6 @@ public class PizzaRotation : MonoBehaviour
         defaultRenderer = transform.Find("default").GetComponent<Renderer>();
         defaultBreadMaterial = defaultRenderer.materials[0]; // Bread is the first material
         defaultTomatoMaterial = defaultRenderer.materials[1]; // Tomato is the second material
-
-
     }
 
     // Update is called once per frame
@@ -40,7 +38,6 @@ public class PizzaRotation : MonoBehaviour
     {
         if (shouldRotate)
         {
-
             // Rotate the pizza
             transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
 
@@ -48,15 +45,14 @@ public class PizzaRotation : MonoBehaviour
             if (colorTransitionTimer < colorTransitionDuration)
             {
                 // Increment timer by delta time
-                colorTransitionTimer += 1/Time.deltaTime;
+                colorTransitionTimer += 1 / Time.deltaTime;
 
                 // Calculate transition completion ratio
                 float t = colorTransitionTimer / colorTransitionDuration;
 
                 // Interpolate material colors with slower transition speed
-                defaultRenderer.materials[0].color = Color.Lerp(defaultBreadMaterial.color, breadPizzaMaterial.color, t*0.1f);
-                defaultRenderer.materials[1].color = Color.Lerp(defaultTomatoMaterial.color, tomatoPizzaMaterial.color, t*0.1f);
-
+                defaultRenderer.materials[0].color = Color.Lerp(defaultBreadMaterial.color, breadPizzaMaterial.color, t * 0.1f);
+                defaultRenderer.materials[1].color = Color.Lerp(defaultTomatoMaterial.color, tomatoPizzaMaterial.color, t * 0.1f);
             }
             else
             {

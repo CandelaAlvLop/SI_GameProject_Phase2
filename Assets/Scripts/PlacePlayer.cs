@@ -6,7 +6,7 @@ public class PlacePlayer : MonoBehaviour
 {
     public GameObject player1;  // Reference to the first player
     public GameObject player2;  // Reference to the second player
-   
+
     // Reference to players mark
     public GameObject mark1;
     public GameObject mark2;
@@ -32,24 +32,18 @@ public class PlacePlayer : MonoBehaviour
 
     public AudioClip placementClip;
 
-
     //Pizza Box Collider
     BoxCollider boxCollider;
 
     void Start()
     {
-       
-       
         Text_Lets_Cook.SetActive(true);
 
         // Find and get the BoxCollider component from the "Pizza Uncooked" game object
         GameObject pizza = GameObject.Find("Pizza Uncooked");
         boxCollider = pizza.GetComponent<BoxCollider>();
 
-
-
         //--- Audio Part ---
-
         // Find and get the AudioSource component from the background music object
         GameObject backgroundMusicObject = GameObject.Find("BackgroundMusic");
         if (backgroundMusicObject != null)
@@ -60,14 +54,11 @@ public class PlacePlayer : MonoBehaviour
         // Find and get the AudioSource component from the timer gameobject
         GameObject timerObject = GameObject.Find("Timer Audio");
 
-        if(timerObject != null) timerAudioSource = timerObject.GetComponent<AudioSource>();
+        if (timerObject != null) timerAudioSource = timerObject.GetComponent<AudioSource>();
 
         // Get the AudioSource components from the player game objects
         player1AudioSource = player1.GetComponent<AudioSource>();
         player2AudioSource = player2.GetComponent<AudioSource>();
-
-       // boxCollider.enabled = false;
-
     }
 
     void Update()
@@ -76,14 +67,12 @@ public class PlacePlayer : MonoBehaviour
         if (!isPlayer1Placed)
         {
             isPlayer1Placed = CheckPlacement(player1.transform, mark1.transform, "Player 1", player1AudioSource);
-
         }
-        
+
         // Check if player 2 is placed
         if (!isPlayer2Placed)
         {
             isPlayer2Placed = CheckPlacement(player2.transform, mark2.transform, "Player 2", player2AudioSource);
-
         }
 
         // If both players are placed, trigger the players placed event
@@ -110,24 +99,18 @@ public class PlacePlayer : MonoBehaviour
 
     void OnPlayersPlaced()
     {
-
         // Deactivate the marks and the "Let's Cook" text
         mark1.SetActive(false);
         mark2.SetActive(false);
         Text_Lets_Cook.SetActive(false);
-      
+
         // Set startCooking to true to start the cooking process
         startCooking = true;
-
 
         // Stop the background music if it is playing
         if (backgroundMusicAudio != null) backgroundMusicAudio.Stop();
 
         // Play the timer audio if it is not already playing
         if (!timerAudioSource.isPlaying) timerAudioSource.Play();
-
-        //boxCollider.enabled = true;
-
-
     }
 }

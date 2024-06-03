@@ -63,7 +63,6 @@ public class PickingObject : MonoBehaviour
     //------ Instantiate an ingredient when triggered by a crate ------
     void OnTriggerEnter(Collider collision)
     {
-
         string crateName = collision.gameObject.name;
         int crateIdx = -1;
 
@@ -88,7 +87,6 @@ public class PickingObject : MonoBehaviour
             case "Crate Tomatoes":
                 crateIdx = 5;
                 break;
-
         }
 
         // Check if the player already has an ingredient, a valid crate index was found, and there are remaining patterns for that ingredient
@@ -102,7 +100,6 @@ public class PickingObject : MonoBehaviour
             ingredientInstance = Instantiate(prefab, transform.position, spawnRotation, transform);
             ingredientInstance.transform.localPosition = spawnPosition;
         }
-        
     }
 
 
@@ -146,7 +143,6 @@ public class PickingObject : MonoBehaviour
                 }
             }
         }
-
     }
 
 
@@ -211,8 +207,6 @@ public class PickingObject : MonoBehaviour
     }
 
 
-
-
     //------ OTHER FUNCTIONS ------
 
     //------ Handle Player Movement Up and Down (Auxiliary Function to test some behaviours) ------
@@ -226,7 +220,6 @@ public class PickingObject : MonoBehaviour
     //---- Searches for an ingredient in a list based on its name and returns its index ---
     public int GetIngredientIndexByName(string name)
     {
-
         // Search for an ingredient in the list based on its name and return its index
         for (int i = 0; i < ingredientPrefabs.Count; i++)
         {
@@ -237,11 +230,4 @@ public class PickingObject : MonoBehaviour
         }
         return -1;
     }
-
-
-
-
-
-
-
 }
