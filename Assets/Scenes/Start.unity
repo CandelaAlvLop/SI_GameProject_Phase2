@@ -5150,7 +5150,6 @@ GameObject:
   - component: {fileID: 1440896353}
   - component: {fileID: 1440896354}
   - component: {fileID: 1440896355}
-  - component: {fileID: 1440896356}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Player
@@ -5390,20 +5389,6 @@ MonoBehaviour:
   rotMargin: 30
   hand: {fileID: 2119985756}
   dropSound: {fileID: 8300000, guid: 4ad4bfb7a4e5d1144ba58cd2cdf47534, type: 3}
---- !u!114 &1440896356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1440896347}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e64488c5cd3a32a4d9430d3985921069, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initialRotation: {x: 0, y: 0, z: 0, w: 0}
-  player2: 0
 --- !u!1 &1448092806
 GameObject:
   m_ObjectHideFlags: 0
@@ -5825,7 +5810,6 @@ GameObject:
   - component: {fileID: 1471923281}
   - component: {fileID: 1471923282}
   - component: {fileID: 1471923283}
-  - component: {fileID: 1471923284}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Player
@@ -6065,20 +6049,6 @@ MonoBehaviour:
   rotMargin: 30
   hand: {fileID: 882758482}
   dropSound: {fileID: 8300000, guid: 4ad4bfb7a4e5d1144ba58cd2cdf47534, type: 3}
---- !u!114 &1471923284
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1471923275}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e64488c5cd3a32a4d9430d3985921069, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initialRotation: {x: 0, y: 0, z: 0, w: 0}
-  player2: 0
 --- !u!1 &1483708435
 GameObject:
   m_ObjectHideFlags: 0
